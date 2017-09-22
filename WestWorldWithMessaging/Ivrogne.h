@@ -34,6 +34,10 @@ class Ivrogne :
 private: 
 	StateMachine<Ivrogne>* m_pStateMAchine;
 
+	location_type m_Location;
+
+	// How many drinks the Ivrogne already has in him
+	int Ebriety;
 
 public:
 	Ivrogne();

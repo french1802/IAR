@@ -238,8 +238,14 @@ void QuenchThirst::Execute(Miner* pMiner)
   pMiner->BuyAndDrinkAWhiskey();
 
   cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "That's mighty fine sippin' liquer";
-
-  pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());  
+  if (pMiner->Angry())
+  {
+	  pMiner->GetFSM()->ChangeState(Fighting::Instance());
+  }
+  else
+  {
+	  pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
+  }
 }
 
 
@@ -253,6 +259,36 @@ bool QuenchThirst::OnMessage(Miner* pMiner, const Telegram& msg)
 {
   //send msg to global message handler
   return false;
+}
+//------------------------------------------------------------------------Fighting
+Fighting* Fighting::Instance()
+{
+	static Fighting instance;
+	
+	return &instance;
+}
+
+void Fighting::Enter(Miner* pMiner) 
+{
+	cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Fight!";
+}
+
+void Fighting::Execute(Miner* pMiner)
+{
+	cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "VIENS TE BATTRE!";
+	pMiner->DecreaseAnger();
+	pMiner->GetFSM()->RevertToPreviousState();
+}
+
+void Fighting::Exit(Miner* pMiner)
+{
+	cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Nice fight!";
+}
+
+bool Fighting::OnMessage(Miner* pMiner, const Telegram& msg)
+{
+	//send msg to global message handler
+	return false;
 }
 
 //------------------------------------------------------------------------EatStew

@@ -74,7 +74,7 @@ public:
 	~Miner() { delete m_pStateMachine; }
 
 
-  StateMachine<Miner>* GetFSM()const { return m_pStateMachine; }
+  
 
 	//this must be implemented
 	void Update();

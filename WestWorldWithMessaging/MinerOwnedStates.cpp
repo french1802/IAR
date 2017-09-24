@@ -248,8 +248,10 @@ void QuenchThirst::Execute(Miner* pMiner)
 
 
 void QuenchThirst::Exit(Miner* pMiner)
-{ 
-  cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Leaving the saloon, feelin' good";
+{
+	if (pMiner->GetFSM()->CurrentState() != Fighting::Instance()) {
+		cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Leaving the saloon, feelin' good";
+	}  
 }
 
 

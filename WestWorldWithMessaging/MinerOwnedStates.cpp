@@ -249,9 +249,9 @@ void QuenchThirst::Execute(Miner* pMiner)
 
 void QuenchThirst::Exit(Miner* pMiner)
 {
-	if (pMiner->GetFSM()->CurrentState() != Fighting::Instance()) {
+	
 		cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Leaving the saloon, feelin' good";
-	}  
+  
 }
 
 
@@ -266,12 +266,12 @@ bool QuenchThirst::OnMessage(Miner* pMiner, const Telegram& msg)
 		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID()) << " at time: "
 			<< Clock->GetCurrentTime();
 
-		SetTextColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
 
 		cout << "\n" << GetNameOfEntity(pMiner->ID()) <<
 			": I will kick your ass";
 
-		pMiner->GetFSM()->ChangeState(Fighting::Instance());
+		pMiner->GetFSM()->SetCurrentState(Fighting::Instance());
 	}
 
 	return true;
@@ -313,7 +313,7 @@ bool Fighting::OnMessage(Miner* pMiner, const Telegram& msg)
 		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID()) << " at time: "
 			<< Clock->GetCurrentTime();
 
-		SetTextColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		SetTextColor(FOREGROUND_RED| FOREGROUND_INTENSITY);
 
 		cout << "\n" << GetNameOfEntity(pMiner->ID()) <<
 			":Mommy!!";
@@ -325,7 +325,7 @@ bool Fighting::OnMessage(Miner* pMiner, const Telegram& msg)
 		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID()) << " at time: "
 			<< Clock->GetCurrentTime();
 
-		SetTextColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
 
 		cout << "\n" << GetNameOfEntity(pMiner->ID()) <<
 			": You can't beat the beast";

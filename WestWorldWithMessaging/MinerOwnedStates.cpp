@@ -327,7 +327,7 @@ bool Fighting::OnMessage(Miner* pMiner, const Telegram& msg)
 
 		cout << "\n" << GetNameOfEntity(pMiner->ID()) <<
 			": You can't beat the beast";
-		pMiner->GetFSM()->RevertToPreviousState();
+		pMiner->GetFSM()->ChangeState(QuenchThirst::Instance());
 	}
 
 	return true;

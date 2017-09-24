@@ -57,7 +57,7 @@ bool SeSaouleAuBar::OnMessage(Ivrogne* pIvrogne, const Telegram& msg)
 				" at time: " << Clock->GetCurrentTime();
 			if (pIvrogne->isDrunkEnough() == true)
 			{
-				SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
+				SetTextColor(FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 				cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": You my nemesis bob, you stole my drink!";
 
 				//Begin the fight
@@ -71,7 +71,7 @@ bool SeSaouleAuBar::OnMessage(Ivrogne* pIvrogne, const Telegram& msg)
 			}
 			else
 			{
-				SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
+				SetTextColor(FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 				cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": Hi Bob, let's have a drink together!";
 
 			}

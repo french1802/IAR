@@ -31,8 +31,6 @@ const int MaxNuggets = 3;
 const int ThirstLevel = 5;
 //above this value a miner is sleepy
 const int TirednessThreshold = 5;
-//above this value a miner want to fight
-const int FightLevel = 5;
 
 
 
@@ -55,8 +53,6 @@ private:
 
 	//the higher the value, the more tired the miner
 	int                   m_iFatigue;
-	//the higher the value, the more angry is the miner
-	int					  m_iAngry;
 public:
 
 	Miner(int id) :m_Location(shack),
@@ -64,7 +60,6 @@ public:
 		m_iMoneyInBank(0),
 		m_iThirst(0),
 		m_iFatigue(0),
-		m_iAngry(7),
 		BaseGameEntity(id)
 
 	{
@@ -101,6 +96,7 @@ public:
 	bool          Fatigued()const;
 	void          DecreaseFatigue() { m_iFatigue -= 1; }
 	void          IncreaseFatigue() { m_iFatigue += 1; }
+	void		  GetHurt() { m_iFatigue += 5; }
 
 	int           Wealth()const { return m_iMoneyInBank; }
 	void          SetWealth(int val) { m_iMoneyInBank = val; }
@@ -108,10 +104,6 @@ public:
 
 	bool          Thirsty()const;
 	void          BuyAndDrinkAWhiskey() { m_iThirst = 0; m_iMoneyInBank -= 2; }
-
-	bool		  Angry()const;
-	void		DecreaseAnger() { m_iAngry -= 5; }
-	void		IncreaseAnger() { m_iAngry += 5; }
 };
 
 

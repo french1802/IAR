@@ -47,11 +47,3 @@ bool Miner::Fatigued()const
 
   return false;
 }
-bool Miner::Angry()const
-{
-	if (m_iAngry >= FightLevel)
-	{
-		return true;
-	}
-	return false;
-}

@@ -41,8 +41,16 @@ void SeSaouleAuBar::Execute(Ivrogne* pIvrogne)
 
 void SeSaouleAuBar::Exit(Ivrogne* pIvrogne)
 {
-	cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": "
-		<< "Ah'm leavin' the saloon i can't drink anymore";
+	if (pIvrogne->GetFSM()->CurrentState() == Altercation::Instance())
+	{
+		cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": "
+			<< "I sure will win, you moron!";
+	}
+	else
+	{
+		cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": "
+			<< "Ah'm leavin' the saloon i can't drink anymore";
+	}
 }
 
 bool SeSaouleAuBar::OnMessage(Ivrogne* pIvrogne, const Telegram& msg)
@@ -168,7 +176,7 @@ void Altercation::Execute(Ivrogne* pIvrogne)
 void Altercation::Exit(Ivrogne* pIvrogne)
 {
 	cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": "
-		<< "Ah'm leavin' my house, another bad day... What Could I do?";
+		<< "Every Man needs to have a fight once in a while!";
 }
 
 bool Altercation::OnMessage(Ivrogne* pIvrogne, const Telegram& msg)

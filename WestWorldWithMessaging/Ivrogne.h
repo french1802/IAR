@@ -14,7 +14,7 @@
 #include "Locations.h"
 #include "IvrogneOwnedState.h"
 #include "misc/ConsoleUtils.h"
-
+#include "misc/utils.h"
 #include <Time.h>
 #include <string>
 #include <cassert>
@@ -51,7 +51,7 @@ public:
 		m_iEbriety(0),
 		BaseGameEntity(id)
 	{
-		srand(time(NULL));
+	
 		m_pStateMachine = new StateMachine<Ivrogne>(this);
 
 		m_pStateMachine->SetCurrentState(SeSaouleAuBar::Instance());
@@ -71,8 +71,9 @@ public:
 
 	void		  increaseEbriety() { m_iEbriety++; }
 	void		  decreaseEbriety() { m_iEbriety--; }
+	void		  setEbrietyMax() { m_iEbriety = EbrietyMaxLevel; }
 
-	bool		  isRestedEnough() { return m_iEbriety <= (int)((rand() / RAND_MAX) * (sleepTimeMin+1)); }
+	bool		  isRestedEnough() { return m_iEbriety <= RandInt(sleepTimeMin+1)); }
 	bool		  isDrunkEnough()  { return m_iEbriety >= EbrietyAgressiveLevel; }
 	bool		  isWastedEnough() { return m_iEbriety >= EbrietyMaxLevel; }
 };

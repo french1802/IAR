@@ -1,8 +1,10 @@
 #include "IvrogneOwnedState.h"
 #include "Ivrogne.h"
 #include "EntityNames.h"
-
-
+#include "Time/CrudeTimer.h"
+#include "MessageDispatcher.h"
+#include "MessageTypes.h"
+#include "misc\utils.h"
 #include <iostream>
 using namespace std;
 
@@ -45,7 +47,38 @@ void SeSaouleAuBar::Exit(Ivrogne* pIvrogne)
 
 bool SeSaouleAuBar::OnMessage(Ivrogne* pIvrogne, const Telegram& msg)
 {
-	//TODO Message reçu par bob
+	SetTextColor(BACKGROUND_BLUE | FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN);
+
+	switch (msg.Msg)
+	{
+		case Msg_InTheBar:
+		{
+			cout << "\nMessage received by " << GetNameOfEntity(pIvrogne->ID()) <<
+				" at time: " << Clock->GetCurrentTime();
+			if (pIvrogne->isDrunkEnough() == true)
+			{
+				SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
+				cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": You my nemesis bob, you stole my drink!";
+
+				//Begin the fight
+				Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY,
+					pIvrogne->ID(),
+					ent_Miner_Bob,
+					Msg_WantToFight,
+					NO_ADDITIONAL_INFO);
+
+				pIvrogne->GetFSM()->ChangeState(Altercation::Instance());
+			}
+			else
+			{
+				SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
+				cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": Hi Bob, let's have a drink together!";
+
+			}
+			
+		}
+		return true;
+	}
 	return false;
 }
 
@@ -100,18 +133,36 @@ Altercation* Altercation::Instance()
 void Altercation::Enter(Ivrogne* pIvrogne)
 {
 	//if the Ivrogne isnt in at home yet, he must go there 
-	if (pIvrogne->Location() != home_I)
-	{
-		cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": " << "I'm Wasted, I should go to bed!";
-
-		pIvrogne->ChangeLocation(home_I);
-	}
+	
+		cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": " << "I'm going to beat you up!";
 }
 
 
 void Altercation::Execute(Ivrogne* pIvrogne)
 {
-	//TODO
+	int combat_value = RandInt(0,10);
+	if(combat_value <4) //Perdu pour l'ivrogne
+	{
+		cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": " << "Your fist is steady for sure! I apologize.";
+
+		Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
+			pIvrogne->ID(),        //ID of sender
+			ent_Miner_Bob,            //ID of recipient
+			Msg_YouWon,   //the message
+			NO_ADDITIONAL_INFO);
+		pIvrogne->setEbrietyMax();
+	}
+	else
+	{
+		cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": " << "Such a loser! You owe me a drink !";
+
+		Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
+			pIvrogne->ID(),        //ID of sender
+			ent_Miner_Bob,            //ID of recipient
+			Msg_YouLose,   //the message
+			NO_ADDITIONAL_INFO);
+	}
+	pIvrogne->GetFSM()->ChangeState(SeSaouleAuBar::Instance());
 }
 
 void Altercation::Exit(Ivrogne* pIvrogne)

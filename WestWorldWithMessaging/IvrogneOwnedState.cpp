@@ -46,6 +46,7 @@ void SeSaouleAuBar::Exit(Ivrogne* pIvrogne)
 bool SeSaouleAuBar::OnMessage(Ivrogne* pIvrogne, const Telegram& msg)
 {
 	//TODO Message reçu par bob
+	return false;
 }
 
 DorsChezLui* DorsChezLui::Instance()
@@ -71,7 +72,7 @@ void DorsChezLui::Execute(Ivrogne* pIvrogne)
 {
 	pIvrogne->decreaseEbriety();
 
-	if (pIvrogne->isRestedEnough == true)
+	if (pIvrogne->isRestedEnough() == true)
 	{
 		pIvrogne->GetFSM()->ChangeState(SeSaouleAuBar::Instance());
 	}
@@ -110,12 +111,7 @@ void Altercation::Enter(Ivrogne* pIvrogne)
 
 void Altercation::Execute(Ivrogne* pIvrogne)
 {
-	pIvrogne->decreaseEbriety();
-
-	if (pIvrogne->isRestedEnough == true)
-	{
-		pIvrogne->GetFSM()->ChangeState(SeSaouleAuBar::Instance());
-	}
+	//TODO
 }
 
 void Altercation::Exit(Ivrogne* pIvrogne)

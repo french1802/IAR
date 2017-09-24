@@ -28,15 +28,20 @@ int main()
   //create his wife
   MinersWife* Elsa = new MinersWife(ent_Elsa);
 
+  //create the ivrogne
+  Ivrogne* Franck = new Ivrogne(ent_Franck);
+
   //register them with the entity manager
   EntityMgr->RegisterEntity(Bob);
   EntityMgr->RegisterEntity(Elsa);
+  EntityMgr->RegisterEntity(Franck);
 
   //run Bob and Elsa through a few Update calls
   for (int i=0; i<30; ++i)
   { 
     Bob->Update();
     Elsa->Update();
+	Franck->Update();
 
     //dispatch any delayed messages
     Dispatch->DispatchDelayedMessages();
@@ -47,6 +52,7 @@ int main()
   //tidy up
   delete Bob;
   delete Elsa;
+  delete Franck;
 
   //wait for a keypress before exiting
   PressAnyKeyToContinue();

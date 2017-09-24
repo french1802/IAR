@@ -230,10 +230,9 @@ void QuenchThirst::Enter(Miner* pMiner)
     pMiner->ChangeLocation(saloon);
 
     cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Boy, ah sure is thusty! Walking to the saloon";
-	//TODO change recipient
 	Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
 		pMiner->ID(),        //ID of sender
-		ent_Elsa,            //ID of recipient
+		ent_Franck,            //ID of recipient
 		Msg_InTheBar,   //the message
 		NO_ADDITIONAL_INFO);
   }

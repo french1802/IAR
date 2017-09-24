@@ -2,11 +2,20 @@
 
 
 
-Ivrogne::Ivrogne()
+bool Ivrogne::HandleMessage(const Telegram& msg)
 {
+	return m_pStateMachine->HandleMessage(msg);
 }
 
 
-Ivrogne::~Ivrogne()
+void Ivrogne::Update()
 {
+	SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
+
+
+	m_pStateMachine->Update();
 }
+
+
+
+

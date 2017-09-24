@@ -8,7 +8,7 @@
 #include "MessageDispatcher.h"
 #include "misc/ConsoleUtils.h"
 #include "EntityNames.h"
-
+#include "Ivrogne.h"
 
 std::ofstream os;
 

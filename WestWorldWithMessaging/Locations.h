@@ -10,7 +10,7 @@ enum location_type
   saloon,
 
   // add for Ivrogne
-  home
+  home_I
 };
 
 

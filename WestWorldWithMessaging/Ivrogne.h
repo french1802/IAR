@@ -26,9 +26,9 @@ template <class entity_type> class State; //pre-fixed with "template <class enti
 struct Telegram;
 
 //The amount the ivrogne can drink before he has to go to sleep
-const int EbrietyMaxLevel = 20;
+const int EbrietyMaxLevel = 40;
 //The amount of drink the ivrogne need to drink before he'll fight Bob
-const int EbrietyAgressiveLevel = 15;
+const int EbrietyAgressiveLevel = 10;
 //The minimum the ivrogne has to be sober up before wake up
 const int sleepTimeMin = 4;
 

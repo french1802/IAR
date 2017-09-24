@@ -73,7 +73,7 @@ public:
 	void		  decreaseEbriety() { m_iEbriety--; }
 	void		  setEbrietyMax() { m_iEbriety = EbrietyMaxLevel; }
 
-	bool		  isRestedEnough() { return m_iEbriety <= RandInt(sleepTimeMin+1)); }
+	bool		  isRestedEnough() { return m_iEbriety <= RandInt(0,sleepTimeMin+1); }
 	bool		  isDrunkEnough()  { return m_iEbriety >= EbrietyAgressiveLevel; }
 	bool		  isWastedEnough() { return m_iEbriety >= EbrietyMaxLevel; }
 };

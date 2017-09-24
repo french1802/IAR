@@ -55,7 +55,7 @@ void SeSaouleAuBar::Exit(Ivrogne* pIvrogne)
 
 bool SeSaouleAuBar::OnMessage(Ivrogne* pIvrogne, const Telegram& msg)
 {
-	SetTextColor(BACKGROUND_BLUE | FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN);
+	SetTextColor(BACKGROUND_BLUE | FOREGROUND_BLUE | FOREGROUND_BLUE | FOREGROUND_BLUE);
 
 	switch (msg.Msg)
 	{
@@ -66,7 +66,7 @@ bool SeSaouleAuBar::OnMessage(Ivrogne* pIvrogne, const Telegram& msg)
 			if (pIvrogne->isDrunkEnough() == true)
 			{
 				SetTextColor(FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-				cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": You my nemesis bob, you stole my drink!";
+				cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": You my nemesis bob, you stole my drink! Come Fight Me!";
 
 				//Begin the fight
 				Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY,
@@ -75,7 +75,7 @@ bool SeSaouleAuBar::OnMessage(Ivrogne* pIvrogne, const Telegram& msg)
 					Msg_WantToFight,
 					NO_ADDITIONAL_INFO);
 
-				pIvrogne->GetFSM()->ChangeState(Altercation::Instance());
+				pIvrogne->GetFSM()->SetCurrentState(Altercation::Instance());
 			}
 			else
 			{
@@ -140,9 +140,7 @@ Altercation* Altercation::Instance()
 
 void Altercation::Enter(Ivrogne* pIvrogne)
 {
-	//if the Ivrogne isnt in at home yet, he must go there 
 	
-		cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": " << "I'm going to beat you up!";
 }
 
 
@@ -170,7 +168,7 @@ void Altercation::Execute(Ivrogne* pIvrogne)
 			Msg_YouLose,   //the message
 			NO_ADDITIONAL_INFO);
 	}
-	pIvrogne->GetFSM()->ChangeState(SeSaouleAuBar::Instance());
+	pIvrogne->GetFSM()->SetState(SeSaouleAuBar::Instance());
 }
 
 void Altercation::Exit(Ivrogne* pIvrogne)

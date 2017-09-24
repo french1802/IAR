@@ -168,7 +168,7 @@ void Altercation::Execute(Ivrogne* pIvrogne)
 			Msg_YouLose,   //the message
 			NO_ADDITIONAL_INFO);
 	}
-	pIvrogne->GetFSM()->SetState(SeSaouleAuBar::Instance());
+	pIvrogne->GetFSM()->ChangeState(SeSaouleAuBar::Instance());
 }
 
 void Altercation::Exit(Ivrogne* pIvrogne)

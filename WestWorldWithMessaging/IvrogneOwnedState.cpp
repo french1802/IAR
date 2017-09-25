@@ -173,6 +173,7 @@ void Altercation::Execute(Ivrogne* pIvrogne)
 
 void Altercation::Exit(Ivrogne* pIvrogne)
 {
+	SetTextColor(FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 	cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": "
 		<< "Every Man needs to have a fight once in a while!";
 }

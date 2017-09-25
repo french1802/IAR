@@ -40,8 +40,9 @@ int main()
   for (int i=0; i<30; ++i)
   { 
     Bob->Update();
-    Elsa->Update();
 	Franck->Update();
+    Elsa->Update();
+	
 
     //dispatch any delayed messages
     Dispatch->DispatchDelayedMessages();

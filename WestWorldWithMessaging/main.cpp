@@ -1,5 +1,7 @@
 #include <fstream>
 #include <time.h>
+#include <thread>
+
 
 #include "Locations.h"
 #include "Miner.h"
@@ -10,7 +12,27 @@
 #include "EntityNames.h"
 #include "Ivrogne.h"
 
+
 std::ofstream os;
+
+void Update_bot(BaseGameEntity* Bge)
+{
+	for (int i = 0; i<30; ++i)
+	{
+		Bge->Update();
+		Sleep(800);
+	}
+}
+
+void Update_msg()
+{
+	for (int i = 0; i < 30; i++)
+	{
+		//dispatch any delayed messages
+		Dispatch->DispatchDelayedMessages();
+
+	}
+}
 
 int main()
 {
@@ -37,18 +59,13 @@ int main()
   EntityMgr->RegisterEntity(Franck);
 
   //run Bob and Elsa through a few Update calls
-  for (int i=0; i<30; ++i)
-  { 
-    Bob->Update();
-	Franck->Update();
-    Elsa->Update();
-	
-
-    //dispatch any delayed messages
-    Dispatch->DispatchDelayedMessages();
-
-    Sleep(800);
-  }
+ 
+	std::thread tBob(Update_bot, Bob);
+	std::thread tElsa(Update_bot, Elsa);
+	std::thread tFranck(Update_bot, Franck);
+	std::thread tMsg(Update_msg);
+    
+    
 
   //tidy up
   delete Bob;
@@ -57,7 +74,9 @@ int main()
 
   //wait for a keypress before exiting
   PressAnyKeyToContinue();
-
+  tBob.join();
+  tFranck.join();
+  tElsa.join();
 
   return 0;
 }

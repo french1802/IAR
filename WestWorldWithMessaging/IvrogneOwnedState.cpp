@@ -32,7 +32,7 @@ void SeSaouleAuBar::Execute(Ivrogne* pIvrogne)
 {
 	//if the Ivrogne isnt in the bar, he must go to the bar 
 	pIvrogne->increaseEbriety();
-
+	cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": "<< "And another one!";
 	if (pIvrogne->isWastedEnough())
 	{
 		pIvrogne->GetFSM()->ChangeState(DorsChezLui::Instance());
@@ -55,7 +55,7 @@ void SeSaouleAuBar::Exit(Ivrogne* pIvrogne)
 
 bool SeSaouleAuBar::OnMessage(Ivrogne* pIvrogne, const Telegram& msg)
 {
-	SetTextColor(BACKGROUND_BLUE | FOREGROUND_BLUE | FOREGROUND_BLUE | FOREGROUND_BLUE);
+	SetTextColor(BACKGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_BLUE | FOREGROUND_BLUE);
 
 	switch (msg.Msg)
 	{
@@ -112,7 +112,7 @@ void DorsChezLui::Enter(Ivrogne* pIvrogne)
 void DorsChezLui::Execute(Ivrogne* pIvrogne)
 {
 	pIvrogne->decreaseEbriety();
-
+	cout << "\n" << GetNameOfEntity(pIvrogne->ID()) << ": "<< "zzZZzzZz!";
 	if (pIvrogne->isRestedEnough() == true)
 	{
 		pIvrogne->GetFSM()->ChangeState(SeSaouleAuBar::Instance());

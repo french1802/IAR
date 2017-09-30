@@ -64,7 +64,7 @@ int main()
 	std::thread tBob(Handle_bot, Bob);
 	std::thread tElsa(Handle_bot, Elsa);
 	std::thread tFranck(Handle_bot, Franck);
-//	std::thread tMsg(Update_msg);
+	std::thread tMsg(Update_msg);
     
     
 
@@ -73,6 +73,7 @@ int main()
   tBob.join();
   tFranck.join();
   tElsa.join();
+  tMsg.join();
   //tidy up
   delete Bob;
   delete Elsa;

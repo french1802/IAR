@@ -105,6 +105,8 @@ public:
     TagNeighbors(pVehicle, m_Obstacles, range);
   }
 
+  void Reset(int a);
+
   const std::vector<Wall2D>&          Walls(){return m_Walls;}                          
   CellSpacePartition<Vehicle*>*       CellSpace(){return m_pCellSpace;}
   const std::vector<BaseGameEntity*>& Obstacles()const{return m_Obstacles;}

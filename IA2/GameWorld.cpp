@@ -82,13 +82,20 @@ GameWorld::GameWorld(int cx, int cy):
   m_Vehicles[Prm.NumAgents-1]->SetScale(Vector2D(10, 10));
   m_Vehicles[Prm.NumAgents-1]->Steering()->WanderOn();
   m_Vehicles[Prm.NumAgents-1]->SetMaxSpeed(70);
+  m_Vehicles[Prm.NumAgents - 1]->FollowingOn();
+  m_Vehicles[Prm.NumAgents - 2]->Steering()->FlockingOff();
+  m_Vehicles[Prm.NumAgents - 2]->SetScale(Vector2D(10, 10));
+  m_Vehicles[Prm.NumAgents - 2]->Steering()->WanderOn();
+  m_Vehicles[Prm.NumAgents - 2]->SetMaxSpeed(70);
+  m_Vehicles[Prm.NumAgents - 2]->FollowingOn();
 
 
-   for (int i=0; i<Prm.NumAgents-1; ++i)
+  /* for (int i=0; i<Prm.NumAgents-1; ++i)
   {
-    m_Vehicles[i]->Steering()->EvadeOn(m_Vehicles[Prm.NumAgents-1]);
+	  // m_Vehicles[i]->Steering()->isSeparationOn();
+    m_Vehicles[i]->Steering()->OffsetPursuitOn(m_Vehicles[i+1], Vector2D(-30,0));
 
-  }
+  }*/
 #endif
  
   //create any obstacles or walls
@@ -97,6 +104,43 @@ GameWorld::GameWorld(int cx, int cy):
 }
 
 
+void GameWorld::Reset(int a) {
+	int b = m_Vehicles.size();
+	for (int i = 0; i < b; i++) {
+		m_Vehicles[i]->Steering()->OffsetPursuitOff();
+		m_Vehicles[i]->Steering()->FlockingOn();
+		m_Vehicles[i]->FollowingOff();
+		m_Vehicles[i]->FollowedOff();
+	}
+
+	switch (a) {
+	case 1:
+	{
+		m_Vehicles[b - 1]->Steering()->FlockingOff();
+		m_Vehicles[b - 1]->SetScale(Vector2D(10, 10));
+		m_Vehicles[b - 1]->Steering()->WanderOn();
+		m_Vehicles[b - 1]->SetMaxSpeed(70);
+		m_Vehicles[b - 1]->FollowingOn();
+		m_Vehicles[b - 2]->SetScale(Vector2D(3, 3));
+	}
+	break;
+	case 2:
+	{
+		m_Vehicles[b - 1]->Steering()->FlockingOff();
+		m_Vehicles[b - 1]->SetScale(Vector2D(10, 10));
+		m_Vehicles[b - 1]->Steering()->WanderOn();
+		m_Vehicles[b - 1]->SetMaxSpeed(70);
+		m_Vehicles[b - 1]->FollowingOn();
+		m_Vehicles[b - 2]->Steering()->FlockingOff();
+		m_Vehicles[b - 2]->SetScale(Vector2D(10, 10));
+		m_Vehicles[b - 2]->Steering()->WanderOn();
+		m_Vehicles[b - 2]->SetMaxSpeed(70);
+		m_Vehicles[b - 2]->FollowingOn();
+	}
+	break;
+	}
+}
+	
 //-------------------------------- dtor ----------------------------------
 //------------------------------------------------------------------------
 GameWorld::~GameWorld()
@@ -313,7 +357,6 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
 }
 
 
-
 //-------------------------- HandleMenuItems -----------------------------
 void GameWorld::HandleMenuItems(WPARAM wParam, HWND hwnd)
 {
@@ -507,7 +550,22 @@ void GameWorld::HandleMenuItems(WPARAM wParam, HWND hwnd)
       }
 
       break;
-      
+
+	  case ID_MENU_ONE:
+	  {
+		  Reset(1);
+	  }
+	  break;
+
+	  case ID_MENU_TWO:
+	  {
+		  Reset(2);
+	  }
+	  break;
+
+	  case ID_MENU_PLAYER:
+	  {}
+	  break;
   }//end switch
 }
 

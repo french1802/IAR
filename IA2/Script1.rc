@@ -53,6 +53,12 @@ BEGIN
     BEGIN
         MENUITEM "On/Off",                      ID_MENU_SMOOTHING
     END
+    POPUP "Options"
+    BEGIN
+		MENUITEM "1 Leader",					ID_MENU_ONE
+		MENUITEM "2 Leader",					ID_MENU_TWO
+		MENUITEM "Control one leader",			ID_MENU_PLAYER
+   END
 END
 
 

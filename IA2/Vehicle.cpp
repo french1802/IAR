@@ -38,6 +38,10 @@ Vehicle::Vehicle(GameWorld* world,
 {  
   InitializeBuffer();
 
+    m_bFollowingOn = false;
+    m_bFollowedOn = false;
+	m_icpt = 0;
+
   //set up the steering behavior class
   m_pSteering = new SteeringBehavior(this);    
 
@@ -106,6 +110,39 @@ void Vehicle::Update(double time_elapsed)
   {
     World()->CellSpace()->UpdateEntity(this, OldPos);
   }
+
+
+  if (!isFollowingOn())
+  {
+	  if (m_icpt == 0) {
+
+
+		  vector<Vehicle*> neighbors = this->World()->Agents();
+
+		  unsigned int a = 0;
+		  boolean continu = true;
+		  while ((a < neighbors.size()) && continu)
+		  {
+			  if ((neighbors[a] != this) &&
+				  (neighbors[a]->isFollowingOn()) &&
+				  (!neighbors[a]->isFollowedOn()))
+			  {
+				  this->Steering()->OffsetPursuitOn(neighbors[a], Vector2D(-30, 0));
+				  this->Steering()->FlockingOff();
+				  this->Steering()->SeparationOn();
+				  neighbors[a]->FollowedOn();
+				  m_icpt++;
+				  continu = false;
+			  }
+			  a++;
+		  }
+	  }
+	  else {
+			  this->FollowingOn();
+			  m_icpt = 0;
+		  }
+  }
+
 
   if (isSmoothingOn())
   {

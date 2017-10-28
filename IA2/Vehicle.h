@@ -46,6 +46,14 @@ private:
 
   //when true, smoothing is active
   bool                  m_bSmoothingOn;
+
+  //when true, the vehicle is following something
+  bool					m_bFollowingOn;
+  //when true, the vehicle is followed by something
+  bool					m_bFollowedOn;
+
+  int m_icpt;
+
   
 
   //keeps a track of the most recent update time. (some of the
@@ -91,11 +99,21 @@ public:
   
   Vector2D    SmoothedHeading()const{return m_vSmoothedHeading;}
 
+
   bool        isSmoothingOn()const{return m_bSmoothingOn;}
   void        SmoothingOn(){m_bSmoothingOn = true;}
   void        SmoothingOff(){m_bSmoothingOn = false;}
   void        ToggleSmoothing(){m_bSmoothingOn = !m_bSmoothingOn;}
-  
+
+
+  bool		isFollowingOn()const { return m_bFollowingOn; }
+  void		FollowingOn() { m_bFollowingOn = true; }
+  void		FollowingOff() { m_bFollowingOn = false; }
+
+  bool		isFollowedOn()const { return m_bFollowedOn; }
+  void		FollowedOn() { m_bFollowedOn = true; }
+  void		FollowedOff() { m_bFollowedOn = false; }
+
   double       TimeElapsed()const{return m_dTimeElapsed;}
  
 };

@@ -6,6 +6,9 @@
 #pragma once
 #include "Vehicle.h"
 #include "AgentPoursuiveur.h"
+
+class AgentPoursuiveur;
+
 class AgentLeader :
 	public Vehicle
 {

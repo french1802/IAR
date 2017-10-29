@@ -5,6 +5,9 @@
 #include "Vehicle.h"
 #include "AgentLeader.h"
 
+
+class AgentLeader;
+
 class AgentPoursuiveur :
 	public Vehicle
 {

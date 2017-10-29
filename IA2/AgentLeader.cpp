@@ -11,7 +11,7 @@ AgentLeader::AgentLeader(GameWorld* world, Vector2D position, double rotation, V
 
 
 AgentLeader::AgentLeader(AgentPoursuiveur ap)
-	: Vehicle(ap.World(), ap.Pos, RandFloat()*TwoPi, ap.Velocity(), ap.Mass(), ap.MaxForce(), ap.MaxSpeed(), ap.MaxTurnRate(), Prm.VehicleScale)
+	: Vehicle(ap.World(), ap.Pos(), RandFloat()*TwoPi, ap.Velocity(), ap.Mass(), ap.MaxForce(), ap.MaxSpeed(), ap.MaxTurnRate(), Prm.VehicleScale)
 {
 
 }

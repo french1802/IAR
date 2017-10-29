@@ -51,7 +51,8 @@ Vehicle::Vehicle(GameWorld* world,
  
 }
 
-
+void Vehicle::ActivateLeader() {}
+void Vehicle::ActivatePlayer() {}
 //---------------------------- dtor -------------------------------------
 //-----------------------------------------------------------------------
 Vehicle::~Vehicle()

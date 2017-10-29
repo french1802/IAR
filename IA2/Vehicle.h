@@ -83,7 +83,8 @@ public:
          double    max_speed,
          double    max_turn_rate,
          double    scale);
-
+  virtual void ActivateLeader();
+  virtual void ActivatePlayer();
   ~Vehicle();
 
   //updates the vehicle's position and orientation

@@ -14,6 +14,8 @@ AgentPoursuiveur::AgentPoursuiveur(AgentLeader ap)
 {
 
 }
+void AgentPoursuiveur::ActivateLeader(){}
+void AgentPoursuiveur::ActivatePlayer() {}
 
 void AgentPoursuiveur::Update(double time_elapsed)
 {

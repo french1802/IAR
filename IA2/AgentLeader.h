@@ -12,6 +12,9 @@ class AgentPoursuiveur;
 class AgentLeader :
 	public Vehicle
 {
+private:
+	int m_nJoueur;
+	int m_icpt;
 public:
 	AgentLeader(GameWorld* world,
 		Vector2D position,
@@ -24,6 +27,8 @@ public:
 		double    scale);
 
 	AgentLeader(AgentPoursuiveur);
+	void Update(double time_elapsed);
+	void ActivatePlayer(void);
 	void ActivateLeader(void);
 	~AgentLeader();
 };

@@ -144,11 +144,20 @@ void GameWorld::Reset() {
 	}
 }
 
+void GameWorld::SetPlayer() {
+	int b = m_Vehicles.size();
+	if (!m_bPlayerPlay) {
+		(m_Vehicles[b - 1])->ActivateLeader();
 
+	}
+	else {
+		(m_Vehicles[b - 1])->ActivatePlayer();
+	}
+}
 //-------------------------------- dtor ----------------------------------
 //------------------------------------------------------------------------
 GameWorld::~GameWorld()
-{
+{	
 	for (unsigned int a = 0; a < m_Vehicles.size(); ++a)
 	{
 		delete m_Vehicles[a];
@@ -300,6 +309,40 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
 
 	switch (wParam)
 	{
+	case 'Z':
+	{
+		if (RenderPlayerPlay())
+		{
+			m_Vehicles[Prm.NumAgents - 1]->SetVelocity(Vector2D(0, -100));
+		}
+	}
+	break;
+	case 'S':
+	{
+		if (RenderPlayerPlay())
+		{
+			m_Vehicles[Prm.NumAgents - 1]->SetVelocity(Vector2D(0,100));
+		}
+	}
+	break;
+	case 'Q' :
+	{
+		if (RenderPlayerPlay()) 
+		{
+			m_Vehicles[Prm.NumAgents - 1]->SetVelocity(Vector2D( -100,0));
+		}
+	}
+	break;
+
+	case 'D' :
+	{
+		if (RenderPlayerPlay())
+		{
+			m_Vehicles[Prm.NumAgents - 1]->SetVelocity(Vector2D(100,0));
+		}
+	}
+	break;
+
 	case 'U':
 	{
 		delete m_pPath;
@@ -568,6 +611,7 @@ void GameWorld::HandleMenuItems(WPARAM wParam, HWND hwnd)
 	{
 		TogglePlayerPlay();
 		CheckMenuItemAppropriately(hwnd, ID_MENU_PLAYER, RenderPlayerPlay());
+		SetPlayer();
 	}
 	break;
 

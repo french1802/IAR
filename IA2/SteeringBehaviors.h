@@ -49,7 +49,9 @@ const double WaypointSeekDist   = 20;
 class SteeringBehavior
 {
 public:
-  
+	void  SetFlagsToZero() {
+		m_iFlags = 0;
+	}
   enum summing_method{weighted_average, prioritized, dithered};
 
 private:
@@ -176,6 +178,7 @@ private:
   void      CreateFeelers();
 
 
+ 
 
    /* .......................................................
 

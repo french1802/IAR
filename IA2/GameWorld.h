@@ -108,7 +108,7 @@ public:
     TagNeighbors(pVehicle, m_Obstacles, range);
   }
 
-
+  void SetPlayer();
   void Reset();
 
 

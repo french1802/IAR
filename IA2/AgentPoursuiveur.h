@@ -23,7 +23,8 @@ public:
 		double    scale);
 
 	AgentPoursuiveur(AgentLeader);
-
+	void ActivatePlayer(void);
+	void ActivateLeader(void);
 	void Update(double time_elapsed);
 	~AgentPoursuiveur();
 };

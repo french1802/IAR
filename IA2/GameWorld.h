@@ -74,6 +74,9 @@ private:
   bool  m_bRenderNeighbors;
   bool  m_bViewKeys;
   bool  m_bShowCellSpaceInfo;
+  bool  m_bPlayerPlay;
+  bool  m_bOneLeader;
+
 
 
   void CreateObstacles();
@@ -139,7 +142,13 @@ public:
 
   bool  RenderFPS()const{return m_bShowFPS;}
   void  ToggleShowFPS(){m_bShowFPS = !m_bShowFPS;}
-  
+
+  bool RenderOneLeader()const { return m_bOneLeader; }
+  void ToggleOneLeader() { m_bOneLeader = !m_bOneLeader; }
+
+  bool RenderPlayerPlay()const { return m_bPlayerPlay; }
+  void TogglePlayerPlay() { m_bPlayerPlay = !m_bPlayerPlay; }
+
   void  ToggleRenderNeighbors(){m_bRenderNeighbors = !m_bRenderNeighbors;}
   bool  RenderNeighbors()const{return m_bRenderNeighbors;}
   

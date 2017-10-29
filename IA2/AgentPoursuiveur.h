@@ -3,6 +3,8 @@
 
 #pragma once
 #include "Vehicle.h"
+#include "AgentLeader.h"
+
 class AgentPoursuiveur :
 	public Vehicle
 {
@@ -16,6 +18,8 @@ public:
 		double    max_speed,
 		double    max_turn_rate,
 		double    scale);
+
+	AgentPoursuiveur(AgentLeader);
 
 	void Update(double time_elapsed);
 	~AgentPoursuiveur();

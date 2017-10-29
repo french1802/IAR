@@ -1,5 +1,11 @@
+#ifndef LEADER_H
+#define LEADER_H
+
+
+
 #pragma once
 #include "Vehicle.h"
+#include "AgentPoursuiveur.h"
 class AgentLeader :
 	public Vehicle
 {
@@ -14,7 +20,11 @@ public:
 		double    max_turn_rate,
 		double    scale);
 
+	AgentLeader(AgentPoursuiveur);
 	void ActivateLeader(void);
 	~AgentLeader();
 };
+
+
+#endif
 

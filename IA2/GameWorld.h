@@ -109,7 +109,7 @@ public:
   }
 
 
-  void Reset(int a);
+  void Reset();
 
 
   const std::vector<Wall2D>&          Walls(){return m_Walls;}                          

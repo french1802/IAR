@@ -56,8 +56,7 @@ BEGIN
 
     POPUP "Options"
     BEGIN
-		MENUITEM "1 Leader",					ID_MENU_ONE
-		MENUITEM "2 Leader",					ID_MENU_TWO
+		MENUITEM "Only 1 Leader",					ID_MENU_ONE
 		MENUITEM "Control one leader",			ID_MENU_PLAYER
    END
 

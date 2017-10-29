@@ -53,6 +53,8 @@ private:
   bool					m_bFollowedOn;
 
   int m_icpt;
+  
+
 
   
 
@@ -74,15 +76,16 @@ private:
 
 public:
 
-  Vehicle(GameWorld* world,
-         Vector2D position,
-         double    rotation,
-         Vector2D velocity,
-         double    mass,
-         double    max_force,
-         double    max_speed,
-         double    max_turn_rate,
-         double    scale);
+	Vehicle(GameWorld* world,
+		Vector2D position,
+		double    rotation,
+		Vector2D velocity,
+		double    mass,
+		double    max_force,
+		double    max_speed,
+		double    max_turn_rate,
+		double    scale);
+	int compteur;
   virtual void ActivateLeader();
   virtual void ActivatePlayer();
   ~Vehicle();
@@ -107,6 +110,7 @@ public:
   void        ToggleSmoothing(){m_bSmoothingOn = !m_bSmoothingOn;}
 
 
+  void		SetCompteur(int a) { compteur = a; }
   bool		isFollowingOn()const { return m_bFollowingOn; }
   void		FollowingOn() { m_bFollowingOn = true; }
   void		FollowingOff() { m_bFollowingOn = false; }

@@ -14,7 +14,7 @@ class AgentLeader :
 {
 private:
 	int m_nJoueur;
-	int m_icpt;
+	
 public:
 	AgentLeader(GameWorld* world,
 		Vector2D position,

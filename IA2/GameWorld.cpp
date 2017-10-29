@@ -314,6 +314,7 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
 		if (RenderPlayerPlay())
 		{
 			m_Vehicles[Prm.NumAgents - 1]->SetVelocity(Vector2D(0, -100));
+			m_Vehicles[Prm.NumAgents - 1]->SetCompteur(15);
 		}
 	}
 	break;
@@ -322,6 +323,7 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
 		if (RenderPlayerPlay())
 		{
 			m_Vehicles[Prm.NumAgents - 1]->SetVelocity(Vector2D(0,100));
+			m_Vehicles[Prm.NumAgents - 1]->SetCompteur(15);
 		}
 	}
 	break;
@@ -330,6 +332,7 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
 		if (RenderPlayerPlay()) 
 		{
 			m_Vehicles[Prm.NumAgents - 1]->SetVelocity(Vector2D( -100,0));
+			m_Vehicles[Prm.NumAgents - 1]->SetCompteur(15);
 		}
 	}
 	break;
@@ -339,6 +342,7 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
 		if (RenderPlayerPlay())
 		{
 			m_Vehicles[Prm.NumAgents - 1]->SetVelocity(Vector2D(100,0));
+			m_Vehicles[Prm.NumAgents - 1]->SetCompteur(15);
 		}
 	}
 	break;

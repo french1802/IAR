@@ -115,7 +115,8 @@ public:
   void		FollowedOff() { m_bFollowedOn = false; }
 
   double       TimeElapsed()const{return m_dTimeElapsed;}
- 
+  int		getIcpt(void) { return m_icpt; }
+  void      setIcpt(int i) { this->m_icpt = i; }
 };
 
 

@@ -110,15 +110,35 @@ void GameWorld::Reset() {
 	}
 
 	m_Vehicles[b - 1]->FollowedOff();
+	Vector2D SpawnPos = Vector2D(m_cxClient / 2.0 + RandomClamped()*m_cxClient / 2.0,
+		m_cyClient / 2.0 + RandomClamped()*m_cyClient / 2.0);
 	if (m_bOneLeader)
 	{
-		AgentPoursuiveur* newAgent = new AgentPoursuiveur(*m_Vehicles[b - 2]);
+		AgentPoursuiveur* newAgent = new AgentPoursuiveur(this,
+			SpawnPos,                 //initial position
+			RandFloat()*TwoPi,        //start rotation
+			Vector2D(0, 0),            //velocity
+			Prm.VehicleMass,          //mass
+			Prm.MaxSteeringForce,     //max force
+			Prm.MaxSpeed,             //max velocity
+			Prm.MaxTurnRatePerSecond, //max turn rate
+			Prm.VehicleScale);        //scale);
+		newAgent->Steering()->FlockingOn();
 		delete m_Vehicles[b - 2];
 		m_Vehicles[b - 2] = newAgent;
 	}
 	else
 	{
-		AgentLeader* newAgent = new AgentLeader(*m_Vehicles[b - 2]);
+		AgentLeader* newAgent = new AgentLeader(this,
+			SpawnPos,                 //initial position
+			RandFloat()*TwoPi,        //start rotation
+			Vector2D(0, 0),            //velocity
+			Prm.VehicleMass,          //mass
+			Prm.MaxSteeringForce,     //max force
+			Prm.MaxSpeed,             //max velocity
+			Prm.MaxTurnRatePerSecond, //max turn rate
+			Prm.VehicleScale);        //scale);
+		newAgent->ActivateLeader();
 		delete m_Vehicles[b - 2];
 		m_Vehicles[b - 2] = newAgent;
 	}

@@ -20,6 +20,7 @@ AgentLeader::AgentLeader(AgentPoursuiveur ap)
 void AgentLeader::ActivateLeader(void)
 {
 	this->Steering()->FlockingOff();
+	this->Steering()->WallAvoidanceOn();
 	this->SetScale(Vector2D(10, 10));
 	this->Steering()->WanderOn();
 	this->SetMaxSpeed(70);

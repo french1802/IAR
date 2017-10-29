@@ -91,7 +91,7 @@ public:
 
   void        Render();
 
-                                                                          
+  
   //-------------------------------------------accessor methods
   SteeringBehavior*const  Steering()const{return m_pSteering;}
   GameWorld*const         World()const{return m_pWorld;} 
